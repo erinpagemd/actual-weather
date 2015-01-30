@@ -1,0 +1,21 @@
+{
+  "name": "actual-weather",
+  "version": "0.0.0",
+  "homepage": "https://github.com/erinpagemd/actual-weather",
+  "authors": [
+    "YOUR NAME <erinpagemd@yahoo.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "foundation": "~5.5.1",
+    "lodash": "~3.0.0"
+  }
+}
