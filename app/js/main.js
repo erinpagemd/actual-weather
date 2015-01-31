@@ -1,28 +1,79 @@
+//select the zip input field and the submitZip button
+var zipInput = document.querySelector('#zipInput')
+var submitZip = document.querySelector('#submitZip')
+
 //////////////////////////////////////////////////////
-/////////////capture button input////////////////////
+/////////////onClick////////////////////
 /////////////////////////////////////////////////////
+submitZip.addEventListener('click', function(){
+  var zip = zipInput.value;
+  var url = 'http://api.wunderground.com/api/e948aefbd9d71dd2/forecast10day/geolookup/q/' + zip + '.json';
+  //////////////////////////////////////////////////////
+  /////////////use the getJSON function////////////////
+  ////////////////////////////////////////////////////
+  getJSON(url, function(res){
+    var days = res.forecast.simpleforecast.forecastday;
+    var dom = createDocFrag(days);
+    document.querySelector('body').appendChild(dom);
+  });
+})
 
 
-//////////////////////////////////////////////////////
-/////////////use the getJSON function////////////////
-////////////////////////////////////////////////////
-var url = 'http://api.wunderground.com/api/e948aefbd9d71dd2/forecast10day/q/' + zip + '.json';
-
-getJSON(url, function(res){
-  var movies = res.Search
-  })
-  var dom = createDocFrag(movies);
-  document.querySelector('#target').appendChild(dom);
-});
 
 
 
 
 //////////////////////////////////FUNCTIONS//////////////////////////////////
 
+///////////////////////////////////////////
+/////////////createDocFrag/////////////
+/////////////////////////////////////////
+function createDocFrag(days){
+  var docFragment = document.createDocumentFragment(); // contains all gathered nodes
+  _.forEach(days, function(day){
+    docFragment.appendChild(createDayDiv(day));
+  })
+  return docFragment
+};
 
 ///////////////////////////////////////////
-/////////////getJSON function/////////////
+/////////////createDayDiv/////////////
+/////////////////////////////////////////
+function createDayDiv(day){
+  var imgUrl = day.icon_url;
+
+  //daydiv other elements go into
+  var div = document.createElement('DIV');
+  div.setAttribute("class", "days");
+
+  //img
+  var img = document.createElement('IMG');
+  img.setAttribute("src", "imgUrl");
+  div.appendChild(img);
+
+  //weekday
+  var div_1 = document.createElement('DIV');
+  div_1.setAttribute("class", "weekday");
+  div.appendChild(div_1);
+
+  //hightemp
+  var div_0 = document.createElement('DIV');
+  div_0.setAttribute("class", "high");
+  div.appendChild(div_0);
+
+  //lowtemp
+  var div_1 = document.createElement('DIV');
+  div_1.setAttribute("class", "low");
+  div.appendChild(div_1);
+
+}
+
+
+
+
+
+///////////////////////////////////////////
+/////////////getJSON/////////////
 /////////////////////////////////////////
 
 function getJSON(url, cb) {
