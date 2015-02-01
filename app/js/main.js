@@ -12,16 +12,10 @@ submitZip.addEventListener('click', function(){
   /////////////use the getJSON function////////////////
   ////////////////////////////////////////////////////
   getJSON(url, function(res){
-    var days = res.forecast.simpleforecast.forecastday;
-    var dom = createDocFrag(days);
+    var dom = createDocFrag(res.forecast.simpleforecast.forecastday);
     document.querySelector('body').appendChild(dom);
   });
 })
-
-
-
-
-
 
 //////////////////////////////////FUNCTIONS//////////////////////////////////
 
@@ -32,7 +26,7 @@ function createDocFrag(days){
   var docFragment = document.createDocumentFragment(); // contains all gathered nodes
   _.forEach(days, function(day){
     docFragment.appendChild(createDayDiv(day));
-  })
+  });
   return docFragment
 };
 
@@ -41,6 +35,9 @@ function createDocFrag(days){
 /////////////////////////////////////////
 function createDayDiv(day){
   var imgUrl = day.icon_url;
+  var weekday = day.date.weekday;
+  var hightemp = day.high.fahrenheit;
+  var lowtemp = day.low.fahrenheit;
 
   //daydiv other elements go into
   var div = document.createElement('DIV');
@@ -54,23 +51,27 @@ function createDayDiv(day){
   //weekday
   var div_1 = document.createElement('DIV');
   div_1.setAttribute("class", "weekday");
+  var text_1 = document.createTextNode(weekday);
+  div_1.appendChild(text_1);
   div.appendChild(div_1);
 
   //hightemp
   var div_0 = document.createElement('DIV');
   div_0.setAttribute("class", "high");
+  var text_0 = document.createTextNode(hightemp);
+  div_0.appendChild(text_0);
   div.appendChild(div_0);
 
   //lowtemp
-  var div_1 = document.createElement('DIV');
-  div_1.setAttribute("class", "low");
-  div.appendChild(div_1);
+  var div_2 = document.createElement('DIV');
+  div_2.setAttribute("class", "low");
+  var text_2 = document.createTextNode(lowtemp);
+  div_2.appendChild(text_2);
+  div.appendChild(div_2);
+
+  return div
 
 }
-
-
-
-
 
 ///////////////////////////////////////////
 /////////////getJSON/////////////
