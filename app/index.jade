@@ -3,15 +3,20 @@ doctype html
 body
   
   head(lang="en")
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.0/js/foundation.min.js")
+    link(rel="stylesheet" href="css/main.css")
     title Actual Weather
     
   body
-    h1 Actually Weather
+    .row
+      .small-3.small-centered.columns
+        h1 Actually Weather
     
     input(type="text" id="zipInput" name="zipInput" placeholder="Type Zip Code Here")
     button(id="submitZip" name="submitZip") Get my weather!
     
     #target
     
+    script(type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js")
     script(type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js")
     script(type="text/javascript" src="js/main.js")
