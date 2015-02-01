@@ -1,19 +1,21 @@
 doctype html
 
-body
+html
   
   head(lang="en")
-    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.0/js/foundation.min.js")
+    link(rel="stylesheet" href="vendor/foundation/css/normalize.css")
+    link(rel="stylesheet" href="vendor/foundation/css/foundation.css")
     link(rel="stylesheet" href="css/main.css")
     title Actual Weather
     
   body
     .row
-      .small-3.small-centered.columns
+      .small-6.small-centered.columns
         h1 Actually Weather
     
-    input(type="text" id="zipInput" name="zipInput" placeholder="Type Zip Code Here")
-    button(id="submitZip" name="submitZip") Get my weather!
+    .row
+      input(type="text" id="zipInput" name="zipInput" placeholder="Type Zip Code Here")
+      button(id="submitZip" name="submitZip").expand.round Get my weather!
     
     #target
     

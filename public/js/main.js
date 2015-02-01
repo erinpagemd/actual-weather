@@ -29,6 +29,9 @@ function createDocFrag(sections){
   var cityDiv = document.createElement('H2');
   var text_city = document.createTextNode(sections.location.city + ', ' + sections.location.state);
   cityDiv.appendChild(text_city);
+  cityDiv.setAttribute("class", "small-6 large-centered columns");
+  //cityDiv.setAttribute("class", "large-centered");
+  //cityDiv.setAttribute("class", "columns");
   docFragment.appendChild(cityDiv);
 
   _.forEach(days, function(day){
